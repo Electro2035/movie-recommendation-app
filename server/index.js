@@ -10,9 +10,13 @@ app.use(express.json()); // Wajib agar server bisa membaca input JSON
 
 // Import rute
 const authRoutes = require('./routes/authRoutes');
+const movieRoutes = require('./routes/movieRoutes');         
+const watchlistRoutes = require('./routes/watchlistRoutes'); 
 
 // Daftarkan rute
 app.use('/api/auth', authRoutes);
+app.use('/api/movies', movieRoutes);
+app.use('/api/watchlist', watchlistRoutes);
 
 // Jalankan Server
 const PORT = process.env.PORT || 5000;

@@ -10,6 +10,10 @@ const verifyToken = (req, res, next) => {
 
     // Format token biasanya "Bearer [token_string]", kita pisahkan untuk ambil tokennya saja
     const token = authHeader.split(' ')[1];
+    
+//debugging: pastikan token dan rahasia JWT benar-benar ada
+    //console.log("Token yang ditangkap:", token);
+    //console.log("Rahasia JWT:", process.env.JWT_SECRET);
 
     try {
         // Verifikasi token
