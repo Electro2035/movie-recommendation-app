@@ -3,7 +3,7 @@ export default function MovieCard({ title, rating, year, poster }) {
 
   return (
     <div className="group min-w-[140px] md:min-w-[180px] cursor-pointer">
-      <div className="w-full h-[210px] md:h-[270px] bg-surface rounded-[20px] overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1.5 border border-white/5">
+      <div className="w-full h-[210px] md:h-[270px] bg-surface dark:bg-surface light:bg-gray-200 rounded-[20px] overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1.5 border border-white/5 dark:border-white/5 light:border-black/10">
         {/* Gambar Poster Asli */}
         <img 
           src={imageUrl} 
@@ -15,8 +15,8 @@ export default function MovieCard({ title, rating, year, poster }) {
         </div>
       </div>
       <div className="mt-3">
-        <h3 className="text-sm md:text-base font-medium text-text-main truncate">{title}</h3>
-        <div className="flex items-center gap-2 text-[12px] text-text-secondary mt-1">
+        <h3 className="text-sm md:text-base font-medium text-text-main dark:text-text-main light:text-light-text truncate">{title}</h3>
+        <div className="flex items-center gap-2 text-[12px] text-text-secondary dark:text-text-secondary light:text-light-text-secondary mt-1">
           <span className="text-yellow-500">★ {rating}</span>
           <span>{year}</span>
         </div>

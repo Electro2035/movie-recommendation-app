@@ -25,13 +25,13 @@ export default function Home() {
     <div className="w-full pb-10">
       {/* HERO SECTION */}
       {featured && (
-        <section className="relative w-full h-[85vh] bg-[#151515] overflow-hidden">
+        <section className="relative w-full h-[85vh] bg-[#151515] dark:bg-[#151515] light:bg-light-bg overflow-hidden">
           <div 
             className="absolute inset-0 bg-cover bg-center transition-opacity duration-1000 z-0"
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${featured.backdrop_path})` }}
           ></div>
           
-          <div className="absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/70 to-black/30 z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-t from-[#151515] dark:from-[#151515] light:from-light-bg via-[#151515]/70 dark:via-[#151515]/70 light:via-light-bg/70 to-black/30 z-10"></div>
           <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent z-10 hidden md:block"></div>
           
           <div className="relative max-w-[1440px] mx-auto w-full h-full z-20 flex flex-col justify-end">
@@ -67,7 +67,7 @@ export default function Home() {
       )}
 
       {/* BAGIAN KONTEN */}
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8 mt-12 md:mt-16 text-[#1F2937] dark:text-[#F3F4F6]">
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8 mt-12 md:mt-16 text-light-text dark:text-[#F3F4F6]">
         
         <section>
           <div className="flex items-center justify-between mb-6">

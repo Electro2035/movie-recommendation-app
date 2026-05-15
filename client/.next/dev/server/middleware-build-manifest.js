@@ -24,10 +24,10 @@ globalThis.__BUILD_MANIFEST = {
       "static/chunks/node_modules_react-dom_cjs_react-dom_development_07i0ttg.js",
       "static/chunks/node_modules_react-dom_0nvv62m._.js",
       "static/chunks/node_modules_0b9d.z6._.js",
-      "static/chunks/[root-of-the-server]__0cw.r7q._.js",
+      "static/chunks/[root-of-the-server]__0dx6ivz._.js",
       "static/chunks/src_styles_globals_0fuav90.css",
       "static/chunks/src_pages__app_07xvfw~._.js",
-      "static/chunks/turbopack-src_pages__app_0aebznl._.js"
+      "static/chunks/turbopack-src_pages__app_04wnhiz._.js"
     ],
     "/_error": [
       "static/chunks/node_modules_next_dist_compiled_0o6l_m6._.js",

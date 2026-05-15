@@ -43,7 +43,7 @@ function MovieCard({ title, rating, year, poster }) {
         className: "group min-w-[140px] md:min-w-[180px] cursor-pointer",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                className: "w-full h-[210px] md:h-[270px] bg-surface rounded-[20px] overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1.5 border border-white/5",
+                className: "w-full h-[210px] md:h-[270px] bg-surface dark:bg-surface light:bg-gray-200 rounded-[20px] overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1.5 border border-white/5 dark:border-white/5 light:border-black/10",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
                         src: imageUrl,
@@ -79,7 +79,7 @@ function MovieCard({ title, rating, year, poster }) {
                 className: "mt-3",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
-                        className: "text-sm md:text-base font-medium text-text-main truncate",
+                        className: "text-sm md:text-base font-medium text-text-main dark:text-text-main light:text-light-text truncate",
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/components/MovieCard.js",
@@ -87,7 +87,7 @@ function MovieCard({ title, rating, year, poster }) {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-2 text-[12px] text-text-secondary mt-1",
+                        className: "flex items-center gap-2 text-[12px] text-text-secondary dark:text-text-secondary light:text-light-text-secondary mt-1",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
                                 className: "text-yellow-500",
@@ -169,7 +169,7 @@ function Home() {
         className: "w-full pb-10",
         children: [
             featured && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
-                className: "relative w-full h-[85vh] bg-[#151515] overflow-hidden",
+                className: "relative w-full h-[85vh] bg-[#151515] dark:bg-[#151515] light:bg-light-bg overflow-hidden",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                         className: "absolute inset-0 bg-cover bg-center transition-opacity duration-1000 z-0",
@@ -182,7 +182,7 @@ function Home() {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-0 bg-gradient-to-t from-[#151515] via-[#151515]/70 to-black/30 z-10"
+                        className: "absolute inset-0 bg-gradient-to-t from-[#151515] dark:from-[#151515] light:from-light-bg via-[#151515]/70 dark:via-[#151515]/70 light:via-light-bg/70 to-black/30 z-10"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/index.js",
                         lineNumber: 34,
@@ -310,7 +310,7 @@ function Home() {
                 columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                className: "max-w-[1280px] mx-auto px-4 md:px-8 mt-12 md:mt-16 text-[#1F2937] dark:text-[#F3F4F6]",
+                className: "max-w-[1280px] mx-auto px-4 md:px-8 mt-12 md:mt-16 text-light-text dark:text-[#F3F4F6]",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
                         children: [
