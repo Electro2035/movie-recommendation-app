@@ -79,6 +79,7 @@ export default function Home() {
             {trending.slice(0, 10).map((movie) => (
               <MovieCard 
                 key={movie.id}
+                id={movie.id}
                 title={movie.title || movie.name}
                 rating={movie.vote_average?.toFixed(1)}
                 year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
@@ -97,6 +98,7 @@ export default function Home() {
             {trending.slice(10, 20).map((movie) => (
               <MovieCard 
                 key={movie.id}
+                id={movie.id}
                 title={movie.title || movie.name}
                 rating={movie.vote_average?.toFixed(1)}
                 year={(movie.release_date || movie.first_air_date)?.split('-')[0]}

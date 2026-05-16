@@ -1,8 +1,12 @@
-export default function MovieCard({ title, rating, year, poster }) {
-  const imageUrl = `https://image.tmdb.org/t/p/w500${poster}`;
+import Link from 'next/link'; 
+
+export default function MovieCard({ id, title, rating, year, poster }) {
+  const imageUrl = poster 
+    ? `https://image.tmdb.org/t/p/w500${poster}`
+    : '/api/placeholder/180/270';
 
   return (
-    <div className="group min-w-[140px] md:min-w-[180px] cursor-pointer">
+      <Link href={`/movies/${id}`} className="block group min-w-[140px] md:min-w-[180px] cursor-pointer">      
       {/* Base: border hitam transparan & bg abu-abu (Light). Dark: border putih transparan & bg surface (Dark) */}
       <div className="w-full h-[210px] md:h-[270px] bg-gray-200 dark:bg-surface rounded-[20px] overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1.5 border border-black/10 dark:border-white/5">
         
@@ -30,6 +34,6 @@ export default function MovieCard({ title, rating, year, poster }) {
           <span>{year}</span>
         </div>
       </div>
-    </div>
+    </Link>
   );
 }

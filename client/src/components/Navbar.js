@@ -8,6 +8,9 @@ export default function Navbar() {
   const [mounted, setMounted] = useState(false);
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  const [searchQuery, setSearchQuery] = useState('');
+
   const isAuthPage = router.pathname === '/login' || router.pathname === '/register';
   // useEffect ini WAJIB ada di next-themes untuk mencegah error tampilan (hydration)
   useEffect(() => {
@@ -23,6 +26,12 @@ export default function Navbar() {
     localStorage.removeItem('token');
     setIsLoggedIn(false);
     router.push('/');
+  };
+
+  const handleSearch = (e) => {
+    if (e.key === 'Enter' && searchQuery.trim()) {
+      router.push(`/search?q=${searchQuery}`);
+    }
   };
 
   if (isAuthPage) return null;
@@ -56,6 +65,9 @@ export default function Navbar() {
               type="text" 
               placeholder="Search for movies..." 
               className="bg-transparent text-sm text-light-text dark:text-white focus:outline-none w-[150px] xl:w-[200px]"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={handleSearch}
             />
           </div>
           
