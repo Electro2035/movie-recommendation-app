@@ -26,17 +26,34 @@ module.exports = mod;
 "[project]/src/components/Navbar.js [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
+return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
+
 __turbopack_context__.s([
     "default",
     ()=>Navbar
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/link.js [ssr] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__ = __turbopack_context__.i("[externals]/next-themes [external] (next-themes, esm_import, [project]/node_modules/next-themes)");
+var __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react [external] (react, cjs)");
+var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
+    __TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__
+]);
+[__TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+;
+;
 ;
 ;
 function Navbar() {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("nav", {
-        className: "sticky top-0 z-50 h-[80px] w-full backdrop-blur-[20px] bg-[#151515]/75 border-b border-white/5",
+    const { theme, setTheme } = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__["useTheme"])();
+    const [mounted, setMounted] = (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useState"])(false);
+    // useEffect ini WAJIB ada di next-themes untuk mencegah error tampilan (hydration)
+    (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react__$5b$external$5d$__$28$react$2c$__cjs$29$__["useEffect"])(()=>{
+        setMounted(true);
+    }, []);
+    return(// Class biasa untuk Light Mode, prefix dark: untuk Dark Mode
+    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("nav", {
+        className: "sticky top-0 z-50 h-[80px] w-full backdrop-blur-[20px] bg-light-bg/80 dark:bg-[#151515]/75 border-b border-black/10 dark:border-white/5 transition-colors",
         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
             className: "max-w-[1440px] mx-auto px-4 md:px-8 h-full flex items-center justify-between",
             children: [
@@ -50,86 +67,51 @@ function Navbar() {
                                 children: "Arunika"
                             }, void 0, false, {
                                 fileName: "[project]/src/components/Navbar.js",
-                                lineNumber: 11,
+                                lineNumber: 22,
                                 columnNumber: 13
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.js",
-                            lineNumber: 10,
+                            lineNumber: 21,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                            className: "hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium text-text-secondary",
+                            className: "hidden md:flex items-center gap-4 lg:gap-6 text-sm font-medium text-light-text-secondary dark:text-text-secondary",
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     href: "/",
-                                    className: "text-text-main border-b-2 border-primary pb-1",
+                                    className: "text-light-text dark:text-text-main border-b-2 border-primary pb-1",
                                     children: "Home"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Navbar.js",
-                                    lineNumber: 16,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/trending",
-                                    className: "hover:text-text-main transition",
-                                    children: "Trending"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Navbar.js",
-                                    lineNumber: 17,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/genres",
-                                    className: "hover:text-text-main transition",
-                                    children: "Genres"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Navbar.js",
-                                    lineNumber: 18,
-                                    columnNumber: 13
-                                }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-                                    href: "/watchlist",
-                                    className: "hover:text-text-main transition",
-                                    children: "Watchlist"
-                                }, void 0, false, {
-                                    fileName: "[project]/src/components/Navbar.js",
-                                    lineNumber: 19,
-                                    columnNumber: 13
-                                }, this)
-                            ]
-                        }, void 0, true, {
-                            fileName: "[project]/src/components/Navbar.js",
-                            lineNumber: 15,
-                            columnNumber: 11
-                        }, this)
-                    ]
-                }, void 0, true, {
-                    fileName: "[project]/src/components/Navbar.js",
-                    lineNumber: 9,
-                    columnNumber: 9
-                }, this),
-                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                    className: "flex items-center gap-3 md:gap-4",
-                    children: [
-                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                            className: "hidden lg:flex items-center bg-white/5 border border-white/10 rounded-full h-[40px] px-4",
-                            children: [
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
-                                    className: "text-text-secondary mr-2",
-                                    children: "🔍"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.js",
                                     lineNumber: 27,
                                     columnNumber: 13
                                 }, this),
-                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
-                                    type: "text",
-                                    placeholder: "Search for movies...",
-                                    className: "bg-transparent text-sm text-white focus:outline-none w-[150px] xl:w-[200px]"
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/trending",
+                                    className: "hover:text-light-text dark:hover:text-text-main transition",
+                                    children: "Trending"
                                 }, void 0, false, {
                                     fileName: "[project]/src/components/Navbar.js",
                                     lineNumber: 28,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/genres",
+                                    className: "hover:text-light-text dark:hover:text-text-main transition",
+                                    children: "Genres"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/Navbar.js",
+                                    lineNumber: 29,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+                                    href: "/watchlist",
+                                    className: "hover:text-light-text dark:hover:text-text-main transition",
+                                    children: "Watchlist"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/Navbar.js",
+                                    lineNumber: 30,
                                     columnNumber: 13
                                 }, this)
                             ]
@@ -137,14 +119,59 @@ function Navbar() {
                             fileName: "[project]/src/components/Navbar.js",
                             lineNumber: 26,
                             columnNumber: 11
+                        }, this)
+                    ]
+                }, void 0, true, {
+                    fileName: "[project]/src/components/Navbar.js",
+                    lineNumber: 20,
+                    columnNumber: 9
+                }, this),
+                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                    className: "flex items-center gap-3 md:gap-4",
+                    children: [
+                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
+                            className: "hidden lg:flex items-center bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full h-[40px] px-4",
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                    className: "text-light-text-secondary dark:text-text-secondary mr-2",
+                                    children: "🔍"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/Navbar.js",
+                                    lineNumber: 38,
+                                    columnNumber: 13
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("input", {
+                                    type: "text",
+                                    placeholder: "Search for movies...",
+                                    className: "bg-transparent text-sm text-light-text dark:text-white focus:outline-none w-[150px] xl:w-[200px]"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/components/Navbar.js",
+                                    lineNumber: 39,
+                                    columnNumber: 13
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/components/Navbar.js",
+                            lineNumber: 37,
+                            columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
-                            className: "lg:hidden text-text-secondary hover:text-white",
+                            className: "lg:hidden text-light-text-secondary dark:text-text-secondary hover:text-light-text dark:hover:text-white",
                             children: "🔍"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.js",
-                            lineNumber: 35,
+                            lineNumber: 47,
                             columnNumber: 11
+                        }, this),
+                        mounted && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("button", {
+                            onClick: ()=>setTheme(theme === 'dark' ? 'light' : 'dark'),
+                            className: "text-light-text-secondary dark:text-text-secondary hover:text-light-text dark:hover:text-text-main transition text-lg w-8 h-8 flex items-center justify-center rounded-full hover:bg-black/5 dark:hover:bg-white/10",
+                            "aria-label": "Toggle theme",
+                            children: theme === 'dark' ? '☀️' : '🌙'
+                        }, void 0, false, {
+                            fileName: "[project]/src/components/Navbar.js",
+                            lineNumber: 54,
+                            columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$link$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
                             href: "/login",
@@ -152,30 +179,33 @@ function Navbar() {
                             children: "Sign In"
                         }, void 0, false, {
                             fileName: "[project]/src/components/Navbar.js",
-                            lineNumber: 39,
+                            lineNumber: 63,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/components/Navbar.js",
-                    lineNumber: 24,
+                    lineNumber: 35,
                     columnNumber: 9
                 }, this)
             ]
         }, void 0, true, {
             fileName: "[project]/src/components/Navbar.js",
-            lineNumber: 6,
+            lineNumber: 17,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/components/Navbar.js",
-        lineNumber: 5,
+        lineNumber: 16,
         columnNumber: 5
-    }, this);
+    }, this));
 }
-}),
+__turbopack_async_result__();
+} catch(e) { __turbopack_async_result__(e); } }, false);}),
 "[project]/src/components/Layout.js [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
+
+return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
 
 __turbopack_context__.s([
     "default",
@@ -183,11 +213,15 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/Navbar.js [ssr] (ecmascript)");
+var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
+    __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__
+]);
+[__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
 ;
 ;
 function Layout({ children }) {
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-        className: "min-h-screen flex flex-col bg-[#F7F3EF] dark:bg-[#151515] transition-colors duration-300",
+        className: "min-h-screen flex flex-col bg-light-bg dark:bg-[#151515] transition-colors duration-300",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Navbar$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {}, void 0, false, {
                 fileName: "[project]/src/components/Layout.js",
@@ -195,7 +229,7 @@ function Layout({ children }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("main", {
-                className: "w-full flex-grow text-[#1F2937] dark:text-[#F3F4F6]",
+                className: "w-full flex-grow text-light-text dark:text-[#F3F4F6]",
                 children: children
             }, void 0, false, {
                 fileName: "[project]/src/components/Layout.js",
@@ -203,7 +237,7 @@ function Layout({ children }) {
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("footer", {
-                className: "mt-5 border-t border-white/5 py-12 bg-[#151515]",
+                className: "mt-5 border-t border-black/10 dark:border-white/5 py-12 bg-[#EBE6E0] dark:bg-[#0D0D0D]",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                         className: "max-w-[1280px] mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8",
@@ -219,13 +253,13 @@ function Layout({ children }) {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
-                                        className: "text-text-secondary text-sm",
+                                        className: "text-light-text-secondary dark:text-text-secondary text-sm",
                                         children: [
                                             "Discover. Watch. Enjoy.",
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("br", {}, void 0, false, {
                                                 fileName: "[project]/src/components/Layout.js",
                                                 lineNumber: 16,
-                                                columnNumber: 79
+                                                columnNumber: 110
                                             }, this),
                                             "Find movies you'll love."
                                         ]
@@ -243,7 +277,7 @@ function Layout({ children }) {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
-                                        className: "font-semibold mb-4 text-sm",
+                                        className: "font-semibold mb-4 text-sm text-light-text dark:text-text-main",
                                         children: "Quick Links"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Layout.js",
@@ -251,7 +285,7 @@ function Layout({ children }) {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
-                                        className: "text-text-secondary text-sm space-y-2 cursor-pointer",
+                                        className: "text-light-text-secondary dark:text-text-secondary text-sm space-y-2 cursor-pointer",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                 className: "hover:text-primary transition",
@@ -300,7 +334,7 @@ function Layout({ children }) {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
-                                        className: "font-semibold mb-4 text-sm",
+                                        className: "font-semibold mb-4 text-sm text-light-text dark:text-text-main",
                                         children: "Support"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Layout.js",
@@ -308,7 +342,7 @@ function Layout({ children }) {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("ul", {
-                                        className: "text-text-secondary text-sm space-y-2 cursor-pointer",
+                                        className: "text-light-text-secondary dark:text-text-secondary text-sm space-y-2 cursor-pointer",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("li", {
                                                 className: "hover:text-primary transition",
@@ -341,7 +375,7 @@ function Layout({ children }) {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h4", {
-                                        className: "font-semibold mb-4 text-sm",
+                                        className: "font-semibold mb-4 text-sm text-light-text dark:text-text-main",
                                         children: "Follow Us"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Layout.js",
@@ -349,7 +383,7 @@ function Layout({ children }) {
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
-                                        className: "text-text-secondary text-sm",
+                                        className: "text-light-text-secondary dark:text-text-secondary text-sm",
                                         children: "Twitter • Instagram • Discord"
                                     }, void 0, false, {
                                         fileName: "[project]/src/components/Layout.js",
@@ -369,7 +403,7 @@ function Layout({ children }) {
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "text-center text-text-secondary text-xs mt-12 border-t border-white/5 pt-6",
+                        className: "text-center text-light-text-secondary dark:text-text-secondary text-xs mt-12 border-t border-black/10 dark:border-white/5 pt-6",
                         children: "© 2026 Arunika. All rights reserved."
                     }, void 0, false, {
                         fileName: "[project]/src/components/Layout.js",
@@ -380,7 +414,7 @@ function Layout({ children }) {
             }, void 0, true, {
                 fileName: "[project]/src/components/Layout.js",
                 lineNumber: 12,
-                columnNumber: 9
+                columnNumber: 1
             }, this)
         ]
     }, void 0, true, {
@@ -389,9 +423,12 @@ function Layout({ children }) {
         columnNumber: 5
     }, this);
 }
-}),
+__turbopack_async_result__();
+} catch(e) { __turbopack_async_result__(e); } }, false);}),
 "[project]/src/pages/_app.js [ssr] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
+
+return __turbopack_context__.a(async (__turbopack_handle_async_dependencies__, __turbopack_async_result__) => { try {
 
 __turbopack_context__.s([
     "default",
@@ -399,25 +436,42 @@ __turbopack_context__.s([
 ]);
 var __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__ = __turbopack_context__.i("[externals]/react/jsx-dev-runtime [external] (react/jsx-dev-runtime, cjs)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Layout$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/Layout.js [ssr] (ecmascript)");
+// Panggil langsung dari next-themes
+var __TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__ = __turbopack_context__.i("[externals]/next-themes [external] (next-themes, esm_import, [project]/node_modules/next-themes)");
+var __turbopack_async_dependencies__ = __turbopack_handle_async_dependencies__([
+    __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Layout$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__,
+    __TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__
+]);
+[__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Layout$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__, __TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__] = __turbopack_async_dependencies__.then ? (await __turbopack_async_dependencies__)() : __turbopack_async_dependencies__;
+;
 ;
 ;
 ;
 function App({ Component, pageProps }) {
-    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Layout$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
-        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Component, {
-            ...pageProps
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$externals$5d2f$next$2d$themes__$5b$external$5d$__$28$next$2d$themes$2c$__esm_import$2c$__$5b$project$5d2f$node_modules$2f$next$2d$themes$29$__["ThemeProvider"], {
+        attribute: "class",
+        defaultTheme: "dark",
+        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$Layout$2e$js__$5b$ssr$5d$__$28$ecmascript$29$__["default"], {
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])(Component, {
+                ...pageProps
+            }, void 0, false, {
+                fileName: "[project]/src/pages/_app.js",
+                lineNumber: 10,
+                columnNumber: 9
+            }, this)
         }, void 0, false, {
             fileName: "[project]/src/pages/_app.js",
-            lineNumber: 7,
+            lineNumber: 9,
             columnNumber: 7
         }, this)
     }, void 0, false, {
         fileName: "[project]/src/pages/_app.js",
-        lineNumber: 6,
+        lineNumber: 8,
         columnNumber: 5
     }, this);
 }
-}),
+__turbopack_async_result__();
+} catch(e) { __turbopack_async_result__(e); } }, false);}),
 ];
 
 //# sourceMappingURL=%5Broot-of-the-server%5D__0bn-6kn._.js.map

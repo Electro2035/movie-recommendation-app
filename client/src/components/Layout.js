@@ -1,6 +1,11 @@
 import Navbar from './Navbar';
+import { useRouter } from 'next/router';
 
 export default function Layout({ children }) {
+
+    const router = useRouter();
+    const isAuthPage = router.pathname === '/login' || router.pathname === '/register';
+
   return (
     <div className="min-h-screen flex flex-col bg-light-bg dark:bg-[#151515] transition-colors duration-300">
       <Navbar />
@@ -9,7 +14,8 @@ export default function Layout({ children }) {
         {children}
       </main>
 
-        <footer className="mt-5 border-t border-black/10 dark:border-white/5 py-12 bg-light-bg dark:bg-[#151515]">
+        {!isAuthPage && (
+        <footer className="mt-5 border-t border-black/10 dark:border-white/5 py-12 bg-[#EBE6E0] dark:bg-[#0D0D0D]">
         <div className="max-w-[1280px] mx-auto px-4 md:px-8 grid grid-cols-1 md:grid-cols-4 gap-8">
           <div>
             <h3 className="text-xl font-bold text-primary tracking-wide mb-4">Arunika</h3>
@@ -36,10 +42,11 @@ export default function Layout({ children }) {
             <p className="text-light-text-secondary dark:text-text-secondary text-sm">Twitter • Instagram • Discord</p>
           </div>
         </div>
-        <div className="text-center text-light-text-secondary dark:text-text-secondary text-xs mt-12 border-t border-white/5 pt-6">
+        <div className="text-center text-light-text-secondary dark:text-text-secondary text-xs mt-12 border-t border-black/10 dark:border-white/5 pt-6">
           © 2026 Arunika. All rights reserved.
         </div>
       </footer>
+        )}
     </div>
   );
 }

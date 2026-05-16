@@ -17,8 +17,8 @@ module.exports = {
         'text-secondary': '#A1A1AA',
         // Light mode colors
         'light-bg': '#F7F3EF',
-        'light-text': '#1F2937',
-        'light-text-secondary': '#6B7280',
+        'light-text': '#000000',
+        'light-text-secondary': '#2A2A2A',
       },
       fontFamily: {
         sans: ['Inter', 'sans-serif'],

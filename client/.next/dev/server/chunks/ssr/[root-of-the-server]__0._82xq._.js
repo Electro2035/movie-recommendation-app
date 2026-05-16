@@ -43,7 +43,7 @@ function MovieCard({ title, rating, year, poster }) {
         className: "group min-w-[140px] md:min-w-[180px] cursor-pointer",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                className: "w-full h-[210px] md:h-[270px] bg-surface dark:bg-surface light:bg-gray-200 rounded-[20px] overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1.5 border border-white/5 dark:border-white/5 light:border-black/10",
+                className: "w-full h-[210px] md:h-[270px] bg-gray-200 dark:bg-surface rounded-[20px] overflow-hidden relative transition-all duration-300 group-hover:-translate-y-1.5 border border-black/10 dark:border-white/5",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("img", {
                         src: imageUrl,
@@ -51,43 +51,43 @@ function MovieCard({ title, rating, year, poster }) {
                         className: "w-full h-full object-cover group-hover:scale-105 transition duration-500"
                     }, void 0, false, {
                         fileName: "[project]/src/components/MovieCard.js",
-                        lineNumber: 8,
+                        lineNumber: 10,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center",
+                        className: "absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center z-10",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                            className: "w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30",
+                            className: "w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center border border-white/30 text-white",
                             children: "▶"
                         }, void 0, false, {
                             fileName: "[project]/src/components/MovieCard.js",
-                            lineNumber: 14,
+                            lineNumber: 17,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/src/components/MovieCard.js",
-                        lineNumber: 13,
+                        lineNumber: 16,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/MovieCard.js",
-                lineNumber: 6,
+                lineNumber: 7,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                 className: "mt-3",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h3", {
-                        className: "text-sm md:text-base font-medium text-text-main dark:text-text-main light:text-light-text truncate",
+                        className: "text-sm md:text-base font-medium text-light-text dark:text-text-main truncate",
                         children: title
                     }, void 0, false, {
                         fileName: "[project]/src/components/MovieCard.js",
-                        lineNumber: 18,
+                        lineNumber: 23,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "flex items-center gap-2 text-[12px] text-text-secondary dark:text-text-secondary light:text-light-text-secondary mt-1",
+                        className: "flex items-center gap-2 text-[12px] text-light-text-secondary dark:text-text-secondary mt-1",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
                                 className: "text-yellow-500",
@@ -97,26 +97,26 @@ function MovieCard({ title, rating, year, poster }) {
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/components/MovieCard.js",
-                                lineNumber: 20,
+                                lineNumber: 29,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
                                 children: year
                             }, void 0, false, {
                                 fileName: "[project]/src/components/MovieCard.js",
-                                lineNumber: 21,
+                                lineNumber: 30,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/components/MovieCard.js",
-                        lineNumber: 19,
+                        lineNumber: 28,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/components/MovieCard.js",
-                lineNumber: 17,
+                lineNumber: 21,
                 columnNumber: 7
             }, this)
         ]
@@ -182,14 +182,14 @@ function Home() {
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-0 bg-gradient-to-t from-[#151515] dark:from-[#151515] light:from-light-bg via-[#151515]/70 dark:via-[#151515]/70 light:via-light-bg/70 to-black/30 z-10"
+                        className: "absolute inset-0 bg-gradient-to-t from-light-bg/90 via-light-bg/20 to-transparent dark:from-background dark:via-background/80 dark:to-transparent z-10"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/index.js",
                         lineNumber: 34,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                        className: "absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent z-10 hidden md:block"
+                        className: "absolute inset-0 bg-gradient-to-r from-light-bg/60 via-transparent to-transparent dark:from-black/70 dark:via-transparent dark:to-transparent z-10 hidden md:block"
                     }, void 0, false, {
                         fileName: "[project]/src/pages/index.js",
                         lineNumber: 35,
@@ -209,15 +209,15 @@ function Home() {
                                     columnNumber: 15
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("h1", {
-                                    className: "text-4xl md:text-[64px] leading-tight md:leading-[1.1] font-semibold mb-4 text-white tracking-[-2px] line-clamp-3",
+                                    className: "text-4xl md:text-[64px] leading-tight md:leading-[1.1] font-bold mb-4 text-light-text dark:text-white tracking-[-2px] line-clamp-3",
                                     children: featured.title || featured.name
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/index.js",
                                     lineNumber: 42,
-                                    columnNumber: 15
+                                    columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
-                                    className: "flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-300 mb-6",
+                                    className: "flex items-center gap-4 text-xs md:text-sm font-medium text-light-text-secondary dark:text-text-secondary mb-6",
                                     children: [
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
                                             className: "flex items-center gap-1",
@@ -228,7 +228,7 @@ function Home() {
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/index.js",
                                                     lineNumber: 47,
-                                                    columnNumber: 59
+                                                    columnNumber: 57
                                                 }, this),
                                                 " ",
                                                 featured.vote_average?.toFixed(1)
@@ -236,28 +236,35 @@ function Home() {
                                         }, void 0, true, {
                                             fileName: "[project]/src/pages/index.js",
                                             lineNumber: 47,
-                                            columnNumber: 17
+                                            columnNumber: 15
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
+                                            children: "•"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/pages/index.js",
+                                            lineNumber: 48,
+                                            columnNumber: 15
                                         }, this),
                                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
                                             children: (featured.release_date || featured.first_air_date)?.split('-')[0]
                                         }, void 0, false, {
                                             fileName: "[project]/src/pages/index.js",
-                                            lineNumber: 48,
-                                            columnNumber: 17
+                                            lineNumber: 49,
+                                            columnNumber: 15
                                         }, this)
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/pages/index.js",
                                     lineNumber: 46,
-                                    columnNumber: 15
+                                    columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("p", {
-                                    className: "text-gray-400 text-sm md:text-base mb-8 max-w-xl line-clamp-3 leading-relaxed",
+                                    className: "text-light-text-secondary dark:text-text-secondary text-sm md:text-base mb-8 max-w-xl line-clamp-3 leading-relaxed",
                                     children: featured.overview
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/index.js",
-                                    lineNumber: 51,
-                                    columnNumber: 15
+                                    lineNumber: 52,
+                                    columnNumber: 13
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
                                     className: "flex gap-4",
@@ -272,24 +279,24 @@ function Home() {
                                                     d: "M8 5v14l11-7z"
                                                 }, void 0, false, {
                                                     fileName: "[project]/src/pages/index.js",
-                                                    lineNumber: 59,
+                                                    lineNumber: 60,
                                                     columnNumber: 21
                                                 }, this)
                                             }, void 0, false, {
                                                 fileName: "[project]/src/pages/index.js",
-                                                lineNumber: 58,
+                                                lineNumber: 59,
                                                 columnNumber: 19
                                             }, this),
                                             "Watch Trailer"
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/src/pages/index.js",
-                                        lineNumber: 57,
+                                        lineNumber: 58,
                                         columnNumber: 17
                                     }, this)
                                 }, void 0, false, {
                                     fileName: "[project]/src/pages/index.js",
-                                    lineNumber: 55,
+                                    lineNumber: 56,
                                     columnNumber: 15
                                 }, this)
                             ]
@@ -322,7 +329,7 @@ function Home() {
                                         children: "Trending Now"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.js",
-                                        lineNumber: 74,
+                                        lineNumber: 75,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -330,13 +337,13 @@ function Home() {
                                         children: "View All"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.js",
-                                        lineNumber: 75,
+                                        lineNumber: 76,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/index.js",
-                                lineNumber: 73,
+                                lineNumber: 74,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -348,18 +355,18 @@ function Home() {
                                         poster: movie.poster_path
                                     }, movie.id, false, {
                                         fileName: "[project]/src/pages/index.js",
-                                        lineNumber: 79,
+                                        lineNumber: 80,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/index.js",
-                                lineNumber: 77,
+                                lineNumber: 78,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/index.js",
-                        lineNumber: 72,
+                        lineNumber: 73,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("section", {
@@ -373,7 +380,7 @@ function Home() {
                                         children: "Recommended for You"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.js",
-                                        lineNumber: 92,
+                                        lineNumber: 93,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("span", {
@@ -381,13 +388,13 @@ function Home() {
                                         children: "View All"
                                     }, void 0, false, {
                                         fileName: "[project]/src/pages/index.js",
-                                        lineNumber: 93,
+                                        lineNumber: 94,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/src/pages/index.js",
-                                lineNumber: 91,
+                                lineNumber: 92,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$externals$5d2f$react$2f$jsx$2d$dev$2d$runtime__$5b$external$5d$__$28$react$2f$jsx$2d$dev$2d$runtime$2c$__cjs$29$__["jsxDEV"])("div", {
@@ -399,24 +406,24 @@ function Home() {
                                         poster: movie.poster_path
                                     }, movie.id, false, {
                                         fileName: "[project]/src/pages/index.js",
-                                        lineNumber: 97,
+                                        lineNumber: 98,
                                         columnNumber: 15
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/src/pages/index.js",
-                                lineNumber: 95,
+                                lineNumber: 96,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/pages/index.js",
-                        lineNumber: 90,
+                        lineNumber: 91,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/pages/index.js",
-                lineNumber: 70,
+                lineNumber: 71,
                 columnNumber: 7
             }, this)
         ]

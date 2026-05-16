@@ -31,26 +31,27 @@ export default function Home() {
             style={{ backgroundImage: `url(https://image.tmdb.org/t/p/original${featured.backdrop_path})` }}
           ></div>
           
-          <div className="absolute inset-0 bg-gradient-to-t from-[#151515] dark:from-[#151515] light:from-light-bg via-[#151515]/70 dark:via-[#151515]/70 light:via-light-bg/70 to-black/30 z-10"></div>
-          <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/40 to-transparent z-10 hidden md:block"></div>
-          
+          <div className="absolute inset-0 bg-gradient-to-t from-light-bg/90 via-light-bg/20 to-transparent dark:from-background dark:via-background/80 dark:to-transparent z-10"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-light-bg/60 via-transparent to-transparent dark:from-black/70 dark:via-transparent dark:to-transparent z-10 hidden md:block"></div>
+
           <div className="relative max-w-[1440px] mx-auto w-full h-full z-20 flex flex-col justify-end">
             <div className="p-6 md:p-16 md:pl-8 w-full md:w-2/3">
               <span className="text-[#C44536] font-medium tracking-widest text-xs mb-2 block">FEATURED</span>
               
-              {/* Teks Hero selalu dipaksa putih agar kontras dengan gambar */}
-              <h1 className="text-4xl md:text-[64px] leading-tight md:leading-[1.1] font-semibold mb-4 text-white tracking-[-2px] line-clamp-3">
-                {featured.title || featured.name}
-              </h1>
+            {/* Judul: text-light-text (hitam/gelap) saat terang, text-white saat gelap */}
+            <h1 className="text-4xl md:text-[64px] leading-tight md:leading-[1.1] font-bold mb-4 text-light-text dark:text-white tracking-[-2px] line-clamp-3">
+              {featured.title || featured.name}
+            </h1>
               
-              <div className="flex flex-wrap items-center gap-3 md:gap-4 text-xs md:text-sm text-gray-300 mb-6">
-                <span className="flex items-center gap-1"><span className="text-yellow-500">★</span> {featured.vote_average?.toFixed(1)}</span>
-                <span>{(featured.release_date || featured.first_air_date)?.split('-')[0]}</span>
-              </div>
+            <div className="flex items-center gap-4 text-xs md:text-sm font-medium text-light-text-secondary dark:text-text-secondary mb-6">
+              <span className="flex items-center gap-1"><span className="text-yellow-500">★</span> {featured.vote_average?.toFixed(1)}</span>
+              <span>•</span>
+              <span>{(featured.release_date || featured.first_air_date)?.split('-')[0]}</span>
+            </div>
 
-              <p className="text-gray-400 text-sm md:text-base mb-8 max-w-xl line-clamp-3 leading-relaxed">
-                {featured.overview}
-              </p>
+            <p className="text-light-text-secondary dark:text-text-secondary text-sm md:text-base mb-8 max-w-xl line-clamp-3 leading-relaxed">
+              {featured.overview}
+            </p>
               
               <div className="flex gap-4">
                 {/* Tombol Watch Trailer dengan SVG Professional */}
