@@ -10,7 +10,7 @@ app.use(cors(
         origin: true, // Mengizinkan semua origin selama tahap testing deployment
         credentials: true
     }
-    
+
 ));
 app.use(express.json()); // Wajib agar server bisa membaca input JSON
 
@@ -25,7 +25,9 @@ app.use('/api/movies', movieRoutes);
 app.use('/api/watchlist', watchlistRoutes);
 
 // Jalankan Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
+//const PORT = process.env.PORT || 5000;
+/*app.listen(PORT, () => {
     console.log(`✅ Server backend berjalan di http://localhost:${PORT}`);
-});
+});*/
+
+module.exports = app; // Ekspor app untuk testing dengan supertest
