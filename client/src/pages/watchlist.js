@@ -39,20 +39,28 @@ export default function Watchlist() {
   // PENAMBAHAN: Fungsi untuk mengubah status (To Watch <-> Watched)
   const handleToggleStatus = async (e, movieId, currentStatus) => {
     e.preventDefault();
-    // Jika status tidak ada, anggap 'to_watch'. Balikkan statusnya.
+    
+    // 1. Tentukan status baru
     const newStatus = (currentStatus || 'to_watch') === 'to_watch' ? 'watched' : 'to_watch';
     
     try {
-      // Pastikan rute PUT ini sudah kamu buat di backend
+      // 2. Kirim update ke backend
       const res = await api.put(`/watchlist/${movieId}`, { status: newStatus });
+      
       if (res.data.success) {
-        // Update state lokal agar UI langsung berpindah tanpa reload
-        setWatchlist(watchlist.map(item => 
-          item.movie_id === movieId ? { ...item, status: newStatus } : item
-        ));
+        // 3. PERBAIKAN UTAMA: Gunakan String() agar ID selalu cocok saat dibandingkan
+        setWatchlist(prevWatchlist => 
+          prevWatchlist.map(item => 
+            String(item.movie_id) === String(movieId) 
+              ? { ...item, status: newStatus } 
+              : item
+          )
+        );
       }
     } catch (error) {
       console.error("Gagal mengubah status:", error);
+      // Opsional: beritahu user jika ada error dari backend (misal: 404 atau 500)
+      alert("Gagal memperbarui status film. Silakan cek koneksi atau login kembali.");
     }
   };
 

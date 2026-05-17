@@ -8,5 +8,6 @@ const verifyToken = require('../middlewares/authMiddleware'); // Satpam JWT
 router.post('/', verifyToken, watchlistController.addToWatchlist);
 router.get('/', verifyToken, watchlistController.getWatchlist);
 router.delete('/:id', verifyToken, watchlistController.removeFromWatchlist);
+router.put('/:id', verifyToken, watchlistController.updateWatchlistStatus);
 
 module.exports = router;

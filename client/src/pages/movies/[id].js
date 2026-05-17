@@ -7,177 +7,89 @@ export default function MovieDetail() {
   const { id } = router.query;
   const [movie, setMovie] = useState(null);
   const [loading, setLoading] = useState(true);
-  
-  // State baru untuk fitur Watchlist
-  const [isInWatchlist, setIsInWatchlist] = useState(false);
+  const [watchlistStatus, setWatchlistStatus] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
 
+  // Fetch Data & Check Status
   useEffect(() => {
     if (!id) return;
-
-    const fetchDetail = async () => {
+    const loadPageData = async () => {
       try {
-        const res = await api.get(`/movies/${id}`); 
-        if (res.data.success) {
-          setMovie(res.data.data);
-        }
-      } catch (error) {
-        console.error("Gagal memuat detail:", error);
-      } finally {
-        setLoading(false);
-      }
+        const [movieRes, watchlistRes] = await Promise.all([
+          api.get(`/movies/${id}`),
+          api.get('/watchlist')
+        ]);
+        if (movieRes.data.success) setMovie(movieRes.data.data);
+        const found = watchlistRes.data.data.find(item => String(item.movie_id) === String(id));
+        setWatchlistStatus(found ? (found.status || 'to_watch') : null);
+      } catch (err) { console.error("Error loading page:", err); }
+      finally { setLoading(false); }
     };
-
-    fetchDetail();
+    loadPageData();
   }, [id]);
 
-  useEffect(() => {
-    const checkWatchlistStatus = async () => {
-      const token = localStorage.getItem('token');
-      if (!token || !id) return;
-
-      try {
-        // Mengambil daftar watchlist user
-        const res = await api.get('/watchlist');
-        if (res.data.success) {
-          // Cek apakah ID film saat ini ada di dalam data watchlist dari database
-          const isExist = res.data.data.some(item => item.movie_id.toString() === id.toString());
-          setIsInWatchlist(isExist);
-        }
-      } catch (error) {
-        console.error("Gagal mengecek status watchlist:", error);
-      }
-    };
-
-    checkWatchlistStatus();
-  }, [id]);
-
-  // Fungsi untuk interaksi tombol Watchlist
   const handleWatchlist = async () => {
-    const token = localStorage.getItem('token');
-    if (!token) {
-      router.push('/login'); // Arahkan ke login jika belum masuk
-      return;
-    }
-
+    if (!localStorage.getItem('token')) return router.push('/login');
     setIsAdding(true);
     try {
-      if (isInWatchlist) {
-        // Hapus dari watchlist
-        await api.delete(`/watchlist/${id}`);
-        setIsInWatchlist(false);
-      } else {
-        // Tambah ke watchlist
+      if (!watchlistStatus) {
         await api.post('/watchlist', {
-          movie_id: movie.id,
-          title: movie.title || movie.name,
-          poster_path: movie.poster_path,
-          rating: movie.vote_average,
-          year: (movie.release_date || movie.first_air_date)?.split('-')[0]
+          movie_id: movie.id, title: movie.title || movie.name,
+          poster_path: movie.poster_path, rating: movie.vote_average,
+          year: movie.release_date?.split('-')[0] || 'N/A', status: 'to_watch'
         });
-        setIsInWatchlist(true);
+        setWatchlistStatus('to_watch');
+      } else {
+        const newStatus = watchlistStatus === 'to_watch' ? 'watched' : 'to_watch';
+        await api.put(`/watchlist/${id}`, { status: newStatus });
+        setWatchlistStatus(newStatus);
       }
-    } catch (error) {
-      console.error("Gagal memperbarui watchlist:", error);
-    } finally {
-      setIsAdding(false);
-    }
+    } catch (err) { console.error(err); }
+    finally { setIsAdding(false); }
   };
 
-  const formatRuntime = (minutes) => {
-    if (!minutes) return 'N/A';
-    return `${Math.floor(minutes / 60)}h ${minutes % 60}m`;
-  };
+  if (loading) return <div className="min-h-screen flex items-center justify-center font-medium">Loading...</div>;
+  if (!movie) return <div className="min-h-screen flex items-center justify-center">Movie not found</div>;
 
-  if (loading) return <div className="min-h-screen flex items-center justify-center">Loading detail...</div>;
-  if (!movie) return <div className="min-h-screen flex items-center justify-center">Movie not found (404)</div>;
+  const btnStyles = {
+    watched: "bg-green-500/10 text-green-600 border-green-500/30",
+    to_watch: "bg-blue-500/10 text-blue-600 border-blue-500/30",
+    default: "border-black/20 dark:border-white/20 text-light-text dark:text-text-main hover:bg-black/5 dark:hover:bg-white/5"
+  };
 
   return (
     <div className="min-h-screen pb-16 bg-[#F7F3EF] dark:bg-[#151515] transition-colors duration-300">
-      
-      {/* 1. Backdrop Image */}
-      <div className="relative w-full h-[50vh] bg-surface">
-        <img 
-          src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} 
-          alt="Backdrop" 
-          className="w-full h-full object-cover opacity-50"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#F7F3EF] dark:from-[#151515] to-transparent"></div>
+      {/* Hero Section */}
+      <div className="relative w-full h-[45vh] bg-surface overflow-hidden">
+        <img src={`https://image.tmdb.org/t/p/w1280${movie.backdrop_path}`} className="w-full h-full object-cover opacity-40 scale-105 blur-sm" alt="backdrop" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#F7F3EF] dark:from-[#151515] to-transparent" />
       </div>
 
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8 -mt-32 relative z-10 flex flex-col md:flex-row gap-8">
+      <div className="max-w-[1100px] mx-auto px-6 -mt-32 relative z-10 flex flex-col md:flex-row gap-10">
+        <img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} className="w-[220px] rounded-2xl shadow-2xl border border-white/10" alt={movie.title} />
         
-        {/* 2. Poster Movie */}
-        <div className="w-[200px] shrink-0 rounded-2xl overflow-hidden shadow-xl border border-black/10 dark:border-white/10">
-          <img 
-            src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} 
-            alt={movie.title}
-            className="w-full h-full object-cover"
-          />
-        </div>
-
-        <div className="flex-grow md:pt-10">
-          {/* 3. Judul Movie */}
-          <h1 className="text-4xl font-bold text-[#1F2937] dark:text-[#F3F4F6] mb-4">
-            {movie.title || movie.name}
-          </h1>
-
-          <div className="flex items-center gap-3 text-sm font-medium text-[#6B7280] dark:text-[#A1A1AA] mb-6">
-            {/* 4. Film Rating */}
+        <div className="flex-grow md:pt-12">
+          <h1 className="text-4xl font-bold dark:text-white mb-3">{movie.title || movie.name}</h1>
+          
+          <div className="flex items-center gap-3 text-sm font-medium text-gray-500 mb-6">
             <span className="text-yellow-500 font-bold">★ {movie.vote_average?.toFixed(1)}</span>
             <span>•</span>
-            {/* 5. Age Rating */}
-            <span className="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">
-              {movie.age_rating || 'PG-13'}
-            </span>
+            <span className="px-2 py-0.5 rounded bg-primary/10 text-primary border border-primary/20">{movie.age_rating || 'PG-13'}</span>
             <span>•</span>
-            {/* 6. Durasi Film */}
-            <span>{formatRuntime(movie.runtime)}</span>
+            <span>{Math.floor(movie.runtime / 60)}h {movie.runtime % 60}m</span>
           </div>
 
-          {/* 7. Sinopsis */}
-          <p className="text-[#6B7280] dark:text-[#A1A1AA] leading-relaxed mb-8 max-w-3xl">
-            {movie.overview}
-          </p>
+          <p className="dark:text-gray-400 leading-relaxed mb-8 max-w-2xl text-justify">{movie.overview}</p>
 
-          <div className="flex gap-4">
-            {/* 8. Tombol Watch Trailer */}
-            <button className="bg-primary hover:bg-primary-hover text-white px-6 py-3 rounded-xl font-semibold transition">
-              ▶ Watch Trailer
-            </button>
+          <div className="flex flex-wrap gap-4">
+            <button className="bg-primary hover:scale-105 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95">▶ Watch Trailer</button>
             
-            {/* 9. Tombol Add to Watchlist (Dinamic dengan Animasi) */}
             <button 
-              onClick={handleWatchlist}
-              disabled={isAdding}
-              className={`
-                px-6 py-3 rounded-xl font-semibold transition-all duration-300 flex items-center justify-center gap-2 
-                active:scale-95 shadow-sm 
-                ${isInWatchlist 
-                  ? 'bg-blue-500/10 text-blue-600 border border-blue-500/50 dark:bg-blue-500/20 dark:text-blue-400 dark:border-blue-500/30' 
-                  : 'border border-[#6B7280] dark:border-[#A1A1AA] text-[#1F2937] dark:text-[#F3F4F6] hover:bg-black/5 dark:hover:bg-white/5'
-                }
-                disabled:opacity-70 disabled:cursor-not-allowed
-              `}
+              onClick={handleWatchlist} disabled={isAdding}
+              className={`px-6 py-3 rounded-xl font-bold border transition-all duration-300 flex items-center gap-2 active:scale-95 disabled:opacity-50 ${btnStyles[watchlistStatus] || btnStyles.default}`}
             >
-              {isAdding ? (
-                <>
-                  <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full"></div>
-                  <span>Processing...</span>
-                </>
-              ) : isInWatchlist ? (
-                <>
-                  {/* UBAH: Tampilan saat sudah ada di watchlist */}
-                  <span className="scale-110 transition-transform duration-300">👁️</span>
-                  <span>Sudah Ditonton</span>
-                </>
-              ) : (
-                <>
-                  {/* Tampilan default (Belum ada di watchlist) */}
-                  <span className="text-lg transition-transform duration-300">+</span>
-                  <span>Add to Watchlist</span>
-                </>
-              )}
+              {isAdding ? <div className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" /> : 
+               watchlistStatus === 'watched' ? '✓ Watched' : watchlistStatus === 'to_watch' ? '👁️ Mark Watched' : '+ Watchlist'}
             </button>
           </div>
         </div>

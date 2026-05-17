@@ -38,3 +38,29 @@ exports.getMovieDetails = async (req, res) => {
         res.status(500).json({ success: false, message: 'Gagal mengambil detail film' });
     }
 };
+
+// Ambil film trending minggu ini
+exports.getTrending = async (req, res) => {
+    try {
+        const response = await axios.get(`https://api.themoviedb.org/3/trending/movie/week?api_key=${process.env.TMDB_API_KEY}`);
+        res.json({ success: true, data: response.data.results });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
+
+// Ambil film berdasarkan genre atau discover
+exports.getMovies = async (req, res) => {
+    const { genre } = req.query;
+    try {
+        // Jika ada genre, gunakan discover endpoint. Jika tidak, ambil populer.
+        const url = genre 
+            ? `https://api.themoviedb.org/3/discover/movie?api_key=${process.env.TMDB_API_KEY}&with_genres=${genre}`
+            : `https://api.themoviedb.org/3/movie/popular?api_key=${process.env.TMDB_API_KEY}`;
+            
+        const response = await axios.get(url);
+        res.json({ success: true, data: response.data.results });
+    } catch (error) {
+        res.status(500).json({ success: false, message: error.message });
+    }
+};
