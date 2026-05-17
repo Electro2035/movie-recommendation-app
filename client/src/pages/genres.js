@@ -38,7 +38,7 @@ export default function Genres() {
             className={`px-5 py-2 rounded-full text-sm font-semibold transition-all ${
               selectedGenre === genre.id 
                 ? 'bg-primary text-white shadow-lg' 
-                : 'bg-black/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10'
+                : 'bg-blac  k/5 dark:bg-white/5 hover:bg-black/10 dark:hover:bg-white/10'
             }`}
           >
             {genre.name}

@@ -9,6 +9,7 @@ export default function Navbar() {
   const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const isAuthPage = router.pathname === '/login' || router.pathname === '/register';
 
@@ -18,8 +19,30 @@ export default function Navbar() {
     if (token) setIsLoggedIn(true);
   }, []);
 
+  useEffect(() => {
+    const checkToken = () => {
+      const token = localStorage.getItem('token');
+      setIsLoggedIn(!!token);
+    };
+
+    checkToken(); // Jalankan saat pertama kali halaman dibuka
+    // Agar Navbar tahu jika ada login/logout di halaman lain
+    window.addEventListener('storage', checkToken);
+    // Custom event agar Navbar tahu jika login sukses tanpa pindah halaman
+    window.addEventListener('login-success', checkToken);
+    // Custom event agar Navbar tahu jika logout sukses
+    window.addEventListener('logout-success', checkToken);
+
+    return () => {
+      window.removeEventListener('storage', checkToken);
+      window.removeEventListener('login-success', checkToken);
+      window.removeEventListener('logout-success', checkToken);
+    };
+  }, []);
+
   const handleLogout = () => {
     localStorage.removeItem('token');
+    window.dispatchEvent(new Event("logout-success"));
     setIsLoggedIn(false);
     router.push('/');
   };
@@ -87,7 +110,7 @@ export default function Navbar() {
           
           {mounted && isLoggedIn ? (
             <div className="flex items-center gap-4">
-              <button onClick={handleLogout} className="text-light-text-secondary dark:text-text-secondary hover:text-light-text dark:hover:text-text-main text-xs font-medium">
+              <button onClick={handleLogout} className="hidden md:block text-light-text-secondary dark:text-text-secondary hover:text-light-text dark:hover:text-text-main text-xs font-medium">
                 Logout
               </button>
               <div className="w-10 h-10 rounded-full bg-surface dark:bg-elevated border border-black/10 dark:border-white/10 flex items-center justify-center text-primary font-semibold text-lg shadow-inner">
@@ -101,8 +124,54 @@ export default function Navbar() {
               </Link>
             )
           )}
+
+          {/* TOMBOL HAMBURGER MOBILE */}
+          <button 
+            className="md:hidden text-2xl text-light-text dark:text-white focus:outline-none ml-2"
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          >
+            {isMobileMenuOpen ? '✕' : '☰'}
+          </button>
         </div>
       </div>
+
+      {/* MENU DROPDOWN MOBILE */}
+      {isMobileMenuOpen && (
+        <div className="md:hidden absolute top-[80px] left-0 w-full bg-[#F7F3EF] dark:bg-[#151515] border-b border-black/10 dark:border-white/5 shadow-lg py-4 px-6 flex flex-col gap-4 animate-fadeIn">
+          
+          <div className="flex items-center bg-black/5 dark:bg-white/5 border border-black/10 dark:border-white/10 rounded-full h-[40px] px-4 w-full mb-2">
+            <span className="text-light-text-secondary dark:text-text-secondary mr-2">🔍</span>
+            <input 
+              type="text" 
+              placeholder="Search for movies..." 
+              className="bg-transparent text-sm text-light-text dark:text-white focus:outline-none w-full"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                handleSearch(e);
+                if (e.key === 'Enter') setIsMobileMenuOpen(false);
+              }}
+            />
+          </div>
+
+          <Link href="/" onClick={() => setIsMobileMenuOpen(false)} className={navLinkClass('/')}>Home</Link>
+          <Link href="/trending" onClick={() => setIsMobileMenuOpen(false)} className={navLinkClass('/trending')}>Trending</Link>
+          <Link href="/genres" onClick={() => setIsMobileMenuOpen(false)} className={navLinkClass('/genres')}>Genres</Link>
+          <Link href="/watchlist" onClick={() => setIsMobileMenuOpen(false)} className={navLinkClass('/watchlist')}>Watchlist</Link>
+          
+          {mounted && isLoggedIn && (
+            <button 
+              onClick={() => {
+                handleLogout();
+                setIsMobileMenuOpen(false);
+              }} 
+              className="text-left mt-2 pt-4 border-t border-black/10 dark:border-white/10 text-red-500 font-medium"
+            >
+              Logout
+            </button>
+          )}
+        </div>
+      )}
     </nav>
   );
 }

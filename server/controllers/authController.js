@@ -1,6 +1,8 @@
 const supabase = require('../config/supabase');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { OAuth2Client } = require('google-auth-library');
+const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 
 // --- FUNGSI REGISTER ---
 exports.register = async (req, res) => {
@@ -66,4 +68,77 @@ exports.login = async (req, res) => {
     } catch (err) {
         res.status(500).json({ success: false, message: 'Terjadi kesalahan pada server' });
     }
+};
+
+// --- FUNGSI GOOGLE LOGIN ---
+exports.googleLogin = async (req, res) => {
+  try {
+    const { token } = req.body;
+
+    // 1. Verifikasi token asli dari Google
+    const ticket = await client.verifyIdToken({
+      idToken: token,
+      audience: process.env.GOOGLE_CLIENT_ID,
+    });
+    
+    // 2. Ambil data email dari Google
+    const payload = ticket.getPayload();
+    const { email } = payload;
+
+    // 3. Cek apakah user sudah ada di database Supabase kita
+    const { data: users, error: fetchError } = await supabase
+      .from('users')
+      .select('*')
+      .eq('email', email);
+
+    if (fetchError) {
+      return res.status(400).json({ success: false, message: fetchError.message });
+    }
+
+    let user;
+
+    // 4. Jika belum ada, buat akun baru secara otomatis (Auto-Register)
+    if (users.length === 0) {
+      // Buat password acak yang di-hash dengan bcrypt agar konsisten dengan fungsi register
+      const randomPassword = Math.random().toString(36).slice(-10);
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(randomPassword, salt);
+
+      const { data: newUser, error: insertError } = await supabase
+        .from('users')
+        .insert([{ email: email, password: hashedPassword }])
+        .select();
+
+      if (insertError) {
+        return res.status(400).json({ success: false, message: insertError.message });
+      }
+      
+      user = newUser[0];
+    } else {
+      // Jika user sudah ada, gunakan data user tersebut
+      user = users[0];
+    }
+
+    // 5. Buatkan JWT token versi aplikasi kita sendiri (berlaku 1 hari agar sama dengan fungsi login)
+    const appToken = jwt.sign(
+      { id: user.id, email: user.email }, 
+      process.env.JWT_SECRET, 
+      { expiresIn: '1d' }
+    );
+
+    // 6. Kirim token kembali ke frontend
+    res.status(200).json({
+      success: true,
+      message: 'Google login successful',
+      token: appToken,
+      user: {
+        id: user.id,
+        email: user.email
+      }
+    });
+
+  } catch (error) {
+    console.error("Google Auth Error:", error);
+    res.status(500).json({ success: false, message: 'Google authentication failed' });
+  }
 };
