@@ -32,7 +32,7 @@ exports.getMovieDetails = async (req, res) => {
     const movieId = req.params.id; // Mengambil ID dari URL (/api/movies/123)
 
     try {
-        const response = await axios.get(`${TMDB_BASE_URL}/movie/${movieId}?api_key=${API_KEY}`);
+        const response = await axios.get(`https://api.themoviedb.org/3/movie/${req.params.id}?api_key=${process.env.TMDB_API_KEY}&append_to_response=videos`);
         res.status(200).json({ success: true, data: response.data });
     } catch (error) {
         res.status(500).json({ success: false, message: 'Gagal mengambil detail film' });

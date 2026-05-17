@@ -9,6 +9,7 @@ export default function MovieDetail() {
   const [loading, setLoading] = useState(true);
   const [watchlistStatus, setWatchlistStatus] = useState(null);
   const [isAdding, setIsAdding] = useState(false);
+  const [showTrailer, setShowTrailer] = useState(false);
 
   // Fetch Data & Check Status
   useEffect(() => {
@@ -51,6 +52,10 @@ export default function MovieDetail() {
   if (loading) return <div className="min-h-screen flex items-center justify-center font-medium">Loading...</div>;
   if (!movie) return <div className="min-h-screen flex items-center justify-center">Movie not found</div>;
 
+  const trailerVideo = movie?.videos?.results?.find(
+    (vid) => vid.site === 'YouTube' && vid.type === 'Trailer'
+  );
+
   const btnStyles = {
     watched: "bg-green-500/10 text-green-600 border-green-500/30",
     to_watch: "bg-blue-500/10 text-blue-600 border-blue-500/30",
@@ -82,7 +87,13 @@ export default function MovieDetail() {
           <p className="dark:text-gray-400 leading-relaxed mb-8 max-w-2xl text-justify">{movie.overview}</p>
 
           <div className="flex flex-wrap gap-4">
-            <button className="bg-primary hover:scale-105 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95">▶ Watch Trailer</button>
+            <button 
+              onClick={() => setShowTrailer(true)}
+              disabled={!trailerVideo}
+              className="bg-primary hover:scale-105 text-white px-8 py-3 rounded-xl font-bold transition-all shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+            >
+              {trailerVideo ? '▶ Watch Trailer' : 'Trailer Unavailable'}
+            </button>
             
             <button 
               onClick={handleWatchlist} disabled={isAdding}
@@ -94,6 +105,38 @@ export default function MovieDetail() {
           </div>
         </div>
       </div>
+
+      {/* --- MODAL POP-UP TRAILER --- */}
+     {showTrailer && trailerVideo && (
+        <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-10">
+          
+          {/* AREA BACKGROUND: Klik di mana saja di area gelap ini akan menutup video */}
+          <div 
+            className="absolute inset-0 cursor-pointer" 
+            onClick={() => setShowTrailer(false)}
+            title="Click outside to close"
+          ></div>
+          
+          <div className="w-full max-w-5xl aspect-video relative animate-fadeIn z-10">
+            {/* TOMBOL CLOSE: Diposisikan sedikit berbeda dan diberi background transparan agar selalu terlihat dan bisa diklik */}
+            <button 
+              onClick={() => setShowTrailer(false)} 
+              className="absolute -top-10 right-0 md:-right-4 text-white/70 hover:text-white font-bold text-sm md:text-lg flex items-center gap-2 transition bg-black/50 px-3 py-1 rounded-lg z-20"
+            >
+              ✕ Close
+            </button>
+            
+            <iframe
+              className="w-full h-full rounded-2xl shadow-2xl border border-white/10 relative z-20"
+              src={`https://www.youtube.com/embed/${trailerVideo.key}?autoplay=1`}
+              title="YouTube video player"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+            ></iframe>
+          </div>
+        </div>
+      )}
     </div>
   );
 }

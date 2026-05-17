@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import api from '@/lib/api';
 import MovieCard from '@/components/MovieCard';
+import Link from 'next/link';
 
 export default function Home() {
   const [trending, setTrending] = useState([]);
@@ -73,7 +74,12 @@ export default function Home() {
         <section>
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] md:text-[28px] font-semibold">Trending Now</h2>
-            <span className="text-[#C44536] text-xs md:text-sm font-medium cursor-pointer hover:underline">View All</span>
+            <Link 
+              href="/trending" 
+              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
+            >
+              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
           </div>
           <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
             {trending.slice(0, 10).map((movie) => (
@@ -92,7 +98,6 @@ export default function Home() {
         <section className="mt-12">
           <div className="flex items-center justify-between mb-6">
             <h2 className="text-[24px] md:text-[28px] font-semibold">Recommended for You</h2>
-            <span className="text-[#C44536] text-xs md:text-sm font-medium cursor-pointer hover:underline">View All</span>
           </div>
           <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
             {trending.slice(10, 20).map((movie) => (
