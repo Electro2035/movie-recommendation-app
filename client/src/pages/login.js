@@ -43,10 +43,22 @@ export default function Login() {
 
   return (
     <div className="min-h-screen flex w-full bg-[#0A0A0A] text-white relative overflow-hidden">
-      
-      {/* ========================================= */}
+    <div className="absolute top-8 left-8 md:top-12 md:left-12 z-50">
+        <Link href="/" className="group flex items-center transition-transform duration-300 hover:scale-105">
+          <div className="relative h-16 w-16 md:h-20 md:w-20 shrink-0 flex items-center justify-center">
+            <img
+              src="/assets/logo.png"
+              alt="Cinevora Logo"
+              className="h-full w-full object-contain drop-shadow-[0_0_15px_rgba(0,0,0,0.5)]"
+            />
+          </div>
+          <h1 className="text-[28px] md:text-[32px] font-black tracking-tighter bg-gradient-to-br from-[#432818] via-[#99582a] to-[#432818] bg-clip-text text-transparent dark:from-[#FFE6A7] dark:via-[#BB9457] dark:to-[#6F4E37] -ml-3 md:-ml-4 drop-shadow-lg">
+            Cinevora
+          </h1>
+        </Link>
+      </div>
+  
       {/* SISI KIRI: BACKGROUND GAMBAR & DIAGONAL CUT */}
-      {/* ========================================= */}
       <div className="hidden lg:block absolute inset-y-0 left-0 w-[55%] z-0 overflow-hidden">
         
         <Image 
@@ -105,11 +117,6 @@ export default function Login() {
         <div className="w-full max-w-[440px] p-[1.5px] rounded-[24px] bg-gradient-to-br from-[#E50914] via-[#f5a623]/50 to-white/5 shadow-[0_0_40px_rgba(229,9,20,0.15)] relative">
           
           <div className="w-full h-full bg-[#121212] p-8 sm:p-10 rounded-[23px] relative overflow-hidden">
-            
-            <div className="absolute top-6 right-6 w-24 h-24 opacity-90 pointer-events-none hidden sm:block">
-              {/* <Image src="/assets/director-chair-1.png" fill className="object-contain" alt="Chair" /> */}
-            </div>
-
             <h2 className="text-3xl font-bold mb-2">Hello Again!</h2>
             <p className="text-gray-400 text-sm mb-8">Welcome back to your movie world.</p>
             
@@ -173,7 +180,7 @@ export default function Login() {
               </div>
 
               <button type="submit" className="w-full bg-gradient-to-r from-[#E50914] to-[#B81D24] hover:from-[#f40612] hover:to-[#E50914] text-white font-semibold py-3.5 rounded-xl transition shadow-lg shadow-red-500/20 mt-6 text-sm flex justify-center items-center gap-2">
-                Log In <span className="text-lg leading-none">→</span>
+                Sign In <span className="text-lg leading-none"></span>
               </button>
             </form>
             

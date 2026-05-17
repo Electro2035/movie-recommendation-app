@@ -7,5 +7,6 @@ router.get('/search', movieController.searchMovies);
 // Tambahkan ini untuk handle genre atau list movie biasa
 router.get('/', movieController.getMovies); 
 router.get('/:id', movieController.getMovieDetails);
+router.get('/genre/:genreId', movieController.getMoviesByGenre);
 
 module.exports = router;

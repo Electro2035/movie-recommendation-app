@@ -4,6 +4,7 @@ import api from '@/lib/api';
 import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
+
 const MovieCard = dynamic(() => import('@/components/MovieCard'), {
   ssr: false, // Menunda render komponen ini di server
   loading: () => (
@@ -15,6 +16,11 @@ const MovieCard = dynamic(() => import('@/components/MovieCard'), {
 export default function Home() {
   const [trending, setTrending] = useState([]);
   const [featured, setFeatured] = useState(null);
+  const [actionMovies, setActionMovies] = useState([]);
+  const [romanceMovies, setRomanceMovies] = useState([]);
+  const [animationMovies, setAnimationMovies] = useState([]);
+  const [dramaMovies, setDramaMovies] = useState([]);
+  const [horrorMovies, setHorrorMovies] = useState([]);
   
   // State untuk Modal Trailer
   const [showTrailer, setShowTrailer] = useState(false);
@@ -33,6 +39,44 @@ export default function Home() {
         console.error("Gagal memuat film:", error);
       }
     };
+    fetchMovies();
+  }, []);useEffect(() => {
+    const fetchMovies = async () => {
+      try {
+        // Menggunakan Promise.all agar semua request berjalan paralel
+        const [
+          trendingRes,
+          actionRes,
+          romanceRes,
+          animationRes,
+          dramaRes,
+          horrorRes
+        ] = await Promise.all([
+          api.get('/movies/trending'),
+          api.get('/movies/genre/28'), // 28 adalah ID TMDb untuk Action
+          api.get('/movies/genre/10749'), // 10749 adalah ID TMDb untuk Romance
+          api.get('/movies/genre/16'), // 16 adalah ID TMDb untuk Animation
+          api.get('/movies/genre/18'), // 18 adalah ID TMDb untuk Drama
+          api.get('/movies/genre/27')  // 27 adalah ID TMDb untuk Horror
+        ]);
+
+        if (trendingRes.data.success) {
+          setTrending(trendingRes.data.data);
+          setFeatured(trendingRes.data.data[0]); 
+        }
+        
+        // Simpan data genre ke state masing-masing
+        if (actionRes.data.success) setActionMovies(actionRes.data.data);
+        if (romanceRes.data.success) setRomanceMovies(romanceRes.data.data);
+        if (animationRes.data.success) setAnimationMovies(animationRes.data.data);
+        if (dramaRes.data.success) setDramaMovies(dramaRes.data.data);
+        if (horrorRes.data.success) setHorrorMovies(horrorRes.data.data);
+
+      } catch (error) {
+        console.error("Gagal memuat film:", error);
+      }
+    };
+    
     fetchMovies();
   }, []);
 
@@ -133,52 +177,6 @@ export default function Home() {
         </section>
       )}
 
-      {/* BAGIAN KONTEN */}
-      <div className="max-w-[1280px] mx-auto px-4 md:px-8 mt-12 md:mt-16 text-light-text dark:text-[#F3F4F6]">
-        
-        <section>
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-[24px] md:text-[28px] font-semibold">Trending Now</h2>
-            <Link 
-              href="/trending" 
-              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
-            >
-              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
-            </Link>
-          </div>
-          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
-            {trending.slice(0, 10).map((movie) => (
-              <MovieCard 
-                key={movie.id}
-                id={movie.id}
-                title={movie.title || movie.name}
-                rating={movie.vote_average?.toFixed(1)}
-                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
-                poster={movie.poster_path}
-              />
-            ))}
-          </div>
-        </section>
-
-        <section className="mt-12">
-          <div className="flex items-center justify-between mb-6">
-            <h2 className="text-[24px] md:text-[28px] font-semibold">Recommended for You</h2>
-          </div>
-          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
-            {trending.slice(10, 20).map((movie) => (
-              <MovieCard 
-                key={movie.id}
-                id={movie.id}
-                title={movie.title || movie.name}
-                rating={movie.vote_average?.toFixed(1)}
-                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
-                poster={movie.poster_path}
-              />
-            ))}
-          </div>
-        </section>
-      </div>
-
       {/* --- MODAL POP-UP TRAILER HERO --- */}
       {showTrailer && trailerKey && (
         <div className="fixed inset-0 z-[100] bg-black/90 backdrop-blur-sm flex items-center justify-center p-4 md:p-10">
@@ -209,6 +207,179 @@ export default function Home() {
           </div>
         </div>
       )}
+
+{/* BAGIAN KONTEN */}
+      <div className="max-w-[1280px] mx-auto px-4 md:px-8 mt-12 md:mt-16 text-light-text dark:text-[#F3F4F6]">
+        
+        <section>
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] md:text-[28px] font-semibold">Trending Now</h2>
+            <Link 
+              href="/trending" 
+              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
+            >
+              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
+            {trending?.slice(0, 10).map((movie) => (
+              <MovieCard 
+                key={movie.id}
+                id={movie.id}
+                title={movie.title || movie.name}
+                rating={movie.vote_average?.toFixed(1)}
+                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
+                poster={movie.poster_path}
+              />
+            ))}
+          </div>
+        </section>
+
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] md:text-[28px] font-semibold">Recommended for You</h2>
+          </div>
+          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
+            {trending?.slice(10, 20).map((movie) => (
+              <MovieCard 
+                key={movie.id}
+                id={movie.id}
+                title={movie.title || movie.name}
+                rating={movie.vote_average?.toFixed(1)}
+                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
+                poster={movie.poster_path}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* GENRE: ACTION */}
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] md:text-[28px] font-semibold">Action</h2>
+            <Link 
+              href="/genres" 
+              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
+            >
+              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
+            {/* Ganti actionMovies dengan array data genre action dari API */}
+            {actionMovies?.slice(0, 10).map((movie) => (
+              <MovieCard 
+                key={movie.id}
+                id={movie.id}
+                title={movie.title || movie.name}
+                rating={movie.vote_average?.toFixed(1)}
+                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
+                poster={movie.poster_path}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* GENRE: ROMANCE */}
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] md:text-[28px] font-semibold">Romance</h2>
+            <Link 
+              href="/genres" 
+              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
+            >
+              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
+            {romanceMovies?.slice(0, 10).map((movie) => (
+              <MovieCard 
+                key={movie.id}
+                id={movie.id}
+                title={movie.title || movie.name}
+                rating={movie.vote_average?.toFixed(1)}
+                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
+                poster={movie.poster_path}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* GENRE: ANIMATION */}
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] md:text-[28px] font-semibold">Animation</h2>
+            <Link 
+              href="/genres" 
+              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
+            >
+              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
+            {animationMovies?.slice(0, 10).map((movie) => (
+              <MovieCard 
+                key={movie.id}
+                id={movie.id}
+                title={movie.title || movie.name}
+                rating={movie.vote_average?.toFixed(1)}
+                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
+                poster={movie.poster_path}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* GENRE: DRAMA */}
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] md:text-[28px] font-semibold">Drama</h2>
+            <Link 
+              href="/genres" 
+              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
+            >
+              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
+            {dramaMovies?.slice(0, 10).map((movie) => (
+              <MovieCard 
+                key={movie.id}
+                id={movie.id}
+                title={movie.title || movie.name}
+                rating={movie.vote_average?.toFixed(1)}
+                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
+                poster={movie.poster_path}
+              />
+            ))}
+          </div>
+        </section>
+
+        {/* GENRE: HORROR */}
+        <section className="mt-12">
+          <div className="flex items-center justify-between mb-6">
+            <h2 className="text-[24px] md:text-[28px] font-semibold">Horror</h2>
+            <Link 
+              href="/genres" 
+              className="text-primary hover:text-red-500 text-sm font-semibold transition-colors flex items-center gap-1 group"
+            >
+              View All <span className="group-hover:translate-x-1 transition-transform">→</span>
+            </Link>
+          </div>
+          <div className="flex gap-4 md:gap-6 overflow-x-auto hide-scrollbar pb-6 snap-x">
+            {horrorMovies?.slice(0, 10).map((movie) => (
+              <MovieCard 
+                key={movie.id}
+                id={movie.id}
+                title={movie.title || movie.name}
+                rating={movie.vote_average?.toFixed(1)}
+                year={(movie.release_date || movie.first_air_date)?.split('-')[0]}
+                poster={movie.poster_path}
+              />
+            ))}
+          </div>
+        </section>
+
+      </div>
     </div>
   );
 }

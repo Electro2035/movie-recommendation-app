@@ -64,3 +64,26 @@ exports.getMovies = async (req, res) => {
         res.status(500).json({ success: false, message: error.message });
     }
 };
+
+exports.getMoviesByGenre = async (req, res) => {
+  const { genreId } = req.params;
+  try {
+    const response = await axios.get(`https://api.themoviedb.org/3/discover/movie`, {
+      params: {
+        api_key: process.env.TMDB_API_KEY, // Pastikan nama variabel env Anda sesuai
+        with_genres: genreId,
+        language: 'en-US',
+        page: 1,
+        sort_by: 'popularity.desc' // Mengurutkan berdasarkan yang paling populer
+      }
+    });
+
+    res.json({
+      success: true,
+      data: response.data.results
+    });
+  } catch (error) {
+    console.error("Error fetching movies by genre:", error.message);
+    res.status(500).json({ success: false, message: 'Gagal mengambil data dari TMDB' });
+  }
+};

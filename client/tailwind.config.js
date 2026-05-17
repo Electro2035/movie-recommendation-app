@@ -16,7 +16,7 @@ module.exports = {
         'text-main': '#F3F4F6',
         'text-secondary': '#A1A1AA',
         // Light mode colors
-        'light-bg': '#F7F3EF',
+        'light-bg': '#f2eae1',
         'light-text': '#000000',
         'light-text-secondary': '#2A2A2A',
       },

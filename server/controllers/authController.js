@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { OAuth2Client } = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
+const multer = require('multer');
+const upload = multer({ storage: multer.memoryStorage() });
 
 // --- FUNGSI REGISTER ---
 exports.register = async (req, res) => {
@@ -83,7 +85,7 @@ exports.googleLogin = async (req, res) => {
     
     // 2. Ambil data email dari Google
     const payload = ticket.getPayload();
-    const { email } = payload;
+    const { email, name, picture } = payload;
 
     // 3. Cek apakah user sudah ada di database Supabase kita
     const { data: users, error: fetchError } = await supabase
@@ -106,7 +108,7 @@ exports.googleLogin = async (req, res) => {
 
       const { data: newUser, error: insertError } = await supabase
         .from('users')
-        .insert([{ email: email, password: hashedPassword }])
+        .insert([{ email: email, password: hashedPassword, name: name, avatar: picture }]) // Simpan juga nama dan avatar dari Google
         .select();
 
       if (insertError) {
@@ -142,3 +144,67 @@ exports.googleLogin = async (req, res) => {
     res.status(500).json({ success: false, message: 'Google authentication failed' });
   }
 };
+
+exports.updateProfile = async (req, res) => {
+  const { name, avatar } = req.body;
+  const userId = req.user.id; // Diambil dari req.user hasil verifyToken
+
+  try {
+    const { data, error } = await supabase
+      .from('users')
+      .update({ name, avatar })
+      .eq('id', userId)
+      .select()
+      .single();
+
+    if (error) throw error;
+
+    res.status(200).json({
+      success: true,
+      message: 'Profil diperbarui',
+      user: data
+    });
+  } catch (err) {
+    res.status(500).json({ success: false, message: 'Gagal update profil' });
+  }
+};
+
+exports.uploadAvatar = async (req, res) => {
+  try {
+    if (!req.file) {
+      return res.status(400).json({ success: false, message: 'No file uploaded' });
+    }
+
+    const file = req.file;
+    const fileExt = file.originalname.split('.').pop();
+    const fileName = `${req.user.id}-${Date.now()}.${fileExt}`;
+    const filePath = `avatars/${fileName}`;
+
+    // Unggah ke Supabase Storage
+    const { data, error } = await supabase.storage
+      .from('avatars')
+      .upload(filePath, file.buffer, {
+        contentType: file.mimetype,
+        upsert: true
+      });
+
+    if (error) throw error;
+
+    // Ambil Public URL
+    const { data: publicUrlData } = supabase.storage
+      .from('avatars')
+      .getPublicUrl(filePath);
+
+    res.status(200).json({
+      success: true,
+      avatarUrl: publicUrlData.publicUrl
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ success: false, message: 'Upload failed' });
+  }
+};
+
+// Pastikan multer di-export juga untuk digunakan di Routes
+exports.uploadMiddleware = upload.single('image');
