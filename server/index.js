@@ -5,7 +5,13 @@ require('dotenv').config();
 const app = express();
 
 // Middleware dasar
-app.use(cors());
+app.use(cors(
+    {
+        origin: true, // Mengizinkan semua origin selama tahap testing deployment
+        credentials: true
+    }
+    
+));
 app.use(express.json()); // Wajib agar server bisa membaca input JSON
 
 // Import rute
